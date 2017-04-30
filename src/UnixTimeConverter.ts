@@ -33,7 +33,7 @@ export class UnixTimeConverter
         textEditor.edit(editor => {
             textEditor.selections.forEach(s => {
                 let replacement = Date.parse(textEditor.document.getText(s)).toString();
-                if (replacement)
+                if (replacement && replacement != "NaN")
                     editor.replace(s, replacement);
             });
         });
@@ -41,7 +41,9 @@ export class UnixTimeConverter
 
     static pad(n : any) : string { return n < 10 ? '0' + n : n; }
 
-    static toRfc3339Utc(d) : string {
+    static toRfc3339Utc(d : Date) : string {
+        if (!Number.isInteger(d.getUTCMilliseconds()))
+            return null;
         return d.getUTCFullYear() + '-'
             + UnixTimeConverter.pad(d.getUTCMonth() + 1) + '-'
             + UnixTimeConverter.pad(d.getUTCDate()) + 'T'
@@ -50,7 +52,7 @@ export class UnixTimeConverter
             + UnixTimeConverter.pad(d.getUTCSeconds()) + 'Z'
     }
 
-    static getTimeZoneSuffix(d) : string {
+    static getTimeZoneSuffix(d : Date) : string {
         let off = d.getTimezoneOffset();
         let sign = off <= 0 ? '+' : '-';
         off = off < 0 ? -off : off;
@@ -59,7 +61,9 @@ export class UnixTimeConverter
             + UnixTimeConverter.pad(off % 60);
     }
 
-    static toRfc3339Local(d) : string {
+    static toRfc3339Local(d : Date) : string {
+        if (!Number.isInteger(d.getMilliseconds()))
+            return null;
         return d.getUTCFullYear() + '-'
             + UnixTimeConverter.pad(d.getMonth() + 1) + '-'
             + UnixTimeConverter.pad(d.getDate()) + 'T'
