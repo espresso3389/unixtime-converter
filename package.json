@@ -34,7 +34,11 @@
     "commands": [
       {
         "command": "extension.convertToRfc3339",
-        "title": "Convert Unix time to RFC3339 formatted string"
+        "title": "Convert Unix time to RFC3339 formatted string (UTC)"
+      },
+      {
+        "command": "extension.convertToRfc3339Local",
+        "title": "Convert Unix time to RFC3339 formatted string (Local time)"
       },
       {
         "command": "extension.convertToUnixTime",

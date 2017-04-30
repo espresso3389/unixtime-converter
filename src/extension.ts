@@ -14,6 +14,10 @@ export function activate(context: vscode.ExtensionContext) {
             command: context => fr.UnixTimeConverter.convertToRfc3339(context)
         },
         {
+            id: 'extension.convertToRfc3339Local',
+            command: context => fr.UnixTimeConverter.convertToRfc3339Local(context)
+        },
+        {
             id: 'extension.convertToUnixTime',
             command: context => fr.UnixTimeConverter.convertToUnixTime(context)
         }];
