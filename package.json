@@ -2,7 +2,7 @@
   "name": "unixtime-converter",
   "displayName": "Unix Time Converter",
   "description": "Convert Unix time to RFC3339 formatted string",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "espresso3389",
   "engines": {
     "vscode": "^1.11.0"
@@ -26,14 +26,18 @@
     "url": "https://github.com/espresso3389/unixtime-converter.git"
   },
   "activationEvents": [
-    "onCommand:extension.convertToRfc3339",
-    "onCommand:extension.convertToUnixTime"
+    "onCommand:extension.convertToRfc3339Utc",
+    "onCommand:extension.convertToRfc3339Local",
+    "onCommand:extension.convertToUnixTime",
+    "onCommand:extension.insertUnixTimeStampNow",
+    "onCommand:extension.insertRfc3339NowUtc",
+    "onCommand:extension.insertRfc3339NowLocal"
   ],
   "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.convertToRfc3339",
+        "command": "extension.convertToRfc3339Utc",
         "title": "Convert Unix time to RFC3339 formatted string (UTC)"
       },
       {
@@ -43,6 +47,18 @@
       {
         "command": "extension.convertToUnixTime",
         "title": "Convert RFC3339 formatted string to Unix time"
+      },
+      {
+        "command": "extension.insertUnixTimeStampNow",
+        "title": "Insert current Unix timestamp"
+      },
+      {
+        "command": "extension.insertRfc3339NowUtc",
+        "title": "Insert current time (UTC) in RFC3339 format"
+      },
+      {
+        "command": "extension.insertRfc3339NowLocal",
+        "title": "Insert current time (Local time) in RFC3339 format"
       }
     ]
   },

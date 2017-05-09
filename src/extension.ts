@@ -10,8 +10,8 @@ export function activate(context: vscode.ExtensionContext) {
     }
     let commands: Commands[] = [
         {
-            id: 'extension.convertToRfc3339',
-            command: context => fr.UnixTimeConverter.convertToRfc3339(context)
+            id: 'extension.convertToRfc3339Utc',
+            command: context => fr.UnixTimeConverter.convertToRfc3339Utc(context)
         },
         {
             id: 'extension.convertToRfc3339Local',
@@ -20,7 +20,20 @@ export function activate(context: vscode.ExtensionContext) {
         {
             id: 'extension.convertToUnixTime',
             command: context => fr.UnixTimeConverter.convertToUnixTime(context)
-        }];
+        },
+        {
+            id: "extension.insertUnixTimeStampNow",
+            command: context => fr.UnixTimeConverter.insertUnixTimeStampNow(context)
+        },
+        {
+            id: "extension.insertRfc3339NowUtc",
+            command: context => fr.UnixTimeConverter.insertRfc3339NowUtc(context)
+        },
+        {
+            id: "extension.insertRfc3339NowLocal",
+            command: context => fr.UnixTimeConverter.insertRfc3339NowLocal(context)
+        }
+    ];
 
     commands.forEach(cmd => {
         context.subscriptions.push(vscode.commands.registerCommand(cmd.id, cmd.command));
